@@ -201,7 +201,113 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="features" className="py-16 lg:py-24 bg-muted/20">
+      <section id="portfolio" className="py-16 lg:py-24">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4">Наши проекты</h2>
+            <p className="text-muted-foreground text-lg">Реализованные решения для бизнеса и частных клиентов</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[
+              {
+                title: 'Ресторан "Панорама"',
+                desc: 'Атмосферное освещение зала световыми кубами с синей подсветкой',
+                image: 'https://cdn.poehali.dev/projects/51c62b2d-3c50-4ed9-b310-c823cce0e70c/files/7e46c941-e632-4b45-b672-cc0b5c38f31a.jpg',
+                category: 'Интерьер',
+                items: '24 световых куба'
+              },
+              {
+                title: 'Отель "Премиум"',
+                desc: 'Кашпо с подсветкой в холле и лобби-зоне',
+                image: 'https://cdn.poehali.dev/projects/51c62b2d-3c50-4ed9-b310-c823cce0e70c/files/0056a34b-79c3-4f8d-bd88-3beba6f98944.jpg',
+                category: 'Интерьер',
+                items: '18 кашпо'
+              }
+            ].map((project, index) => (
+              <Card 
+                key={project.title}
+                className="overflow-hidden border-border/50 hover:border-primary/50 transition-all group animate-fade-in"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="relative overflow-hidden h-80">
+                  <img 
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                  <Badge className="absolute top-4 right-4 bg-primary/80 backdrop-blur-sm">
+                    {project.category}
+                  </Badge>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-muted-foreground mb-4">{project.desc}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-primary font-medium">{project.items}</span>
+                    <Button variant="outline" size="sm">
+                      Подробнее
+                      <Icon name="ArrowRight" size={16} className="ml-2" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" className="py-16 lg:py-24 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4">Отзывы клиентов</h2>
+            <p className="text-muted-foreground text-lg">Что говорят о нас</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Алексей Морозов',
+                role: 'Владелец ресторана',
+                text: 'Световые кубы полностью преобразили атмосферу зала. Гости в восторге от необычного освещения!',
+                rating: 5
+              },
+              {
+                name: 'Ирина Смирнова',
+                role: 'Дизайнер интерьеров',
+                text: 'Качественные изделия, отличный сервис. Работаем с LightForms уже 2 года на постоянной основе.',
+                rating: 5
+              },
+              {
+                name: 'Дмитрий Волков',
+                role: 'Частный клиент',
+                text: 'Установили световые шары в саду. Вечером участок выглядит просто волшебно! Рекомендую.',
+                rating: 5
+              }
+            ].map((review, index) => (
+              <Card 
+                key={review.name}
+                className="p-6 border-border/50 hover:border-primary/50 transition-all animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Icon key={i} name="Star" size={18} className="text-accent fill-accent" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground mb-4 italic">"{review.text}"</p>
+                <div className="border-t border-border pt-4">
+                  <p className="font-semibold">{review.name}</p>
+                  <p className="text-sm text-muted-foreground">{review.role}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="features" className="py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
