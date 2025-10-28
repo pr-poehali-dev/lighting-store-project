@@ -267,6 +267,86 @@ export default function Index() {
         </div>
       </section>
 
+      <section id="about" className="py-16 lg:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-5xl font-bold mb-4">О компании</h2>
+              <p className="text-muted-foreground text-lg">Эксперты в области световых решений</p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+              <div>
+                <h3 className="text-2xl font-bold mb-4">МагазинСветильников — ваш надёжный партнёр</h3>
+                <p className="text-muted-foreground mb-4">
+                  Мы специализируемся на поставке профессиональных светодиодных фигур для интерьера и ландшафтного дизайна. 
+                  Наш склад находится в Екатеринбурге, откуда мы осуществляем доставку по всей России.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  За годы работы мы реализовали более 150 проектов: от частных домов до крупных ресторанов, отелей и 
+                  общественных пространств. Наши световые решения создают уникальную атмосферу и подчёркивают индивидуальность каждого проекта.
+                </p>
+                <p className="text-muted-foreground">
+                  Мы работаем только с проверенными производителями, предоставляем гарантию на всю продукцию 
+                  и консультируем на всех этапах — от выбора до установки.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <Card className="p-6 text-center border-border/50">
+                  <div className="text-4xl font-bold text-primary mb-2">150+</div>
+                  <p className="text-sm text-muted-foreground">Реализованных проектов</p>
+                </Card>
+                <Card className="p-6 text-center border-border/50">
+                  <div className="text-4xl font-bold text-secondary mb-2">5 лет</div>
+                  <p className="text-sm text-muted-foreground">На рынке</p>
+                </Card>
+                <Card className="p-6 text-center border-border/50">
+                  <div className="text-4xl font-bold text-accent mb-2">2 года</div>
+                  <p className="text-sm text-muted-foreground">Гарантия</p>
+                </Card>
+                <Card className="p-6 text-center border-border/50">
+                  <div className="text-4xl font-bold text-primary mb-2">24/7</div>
+                  <p className="text-sm text-muted-foreground">Поддержка</p>
+                </Card>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: 'Target',
+                  title: 'Наша миссия',
+                  desc: 'Делать световой дизайн доступным для каждого, создавая продукты высочайшего качества'
+                },
+                {
+                  icon: 'Users',
+                  title: 'Наша команда',
+                  desc: 'Профессионалы с опытом в освещении, дизайне и архитектуре'
+                },
+                {
+                  icon: 'Award',
+                  title: 'Наши ценности',
+                  desc: 'Качество, надёжность, индивидуальный подход к каждому клиенту'
+                }
+              ].map((item, index) => (
+                <Card 
+                  key={item.title}
+                  className="p-6 border-border/50 hover:border-primary/50 transition-all group animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-primary to-secondary glow-blue flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Icon name={item.icon as any} size={28} className="text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="testimonials" className="py-16 lg:py-24 bg-muted/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -285,7 +365,7 @@ export default function Index() {
               {
                 name: 'Ирина Смирнова',
                 role: 'Дизайнер интерьеров',
-                text: 'Качественные изделия, отличный сервис. Работаем с LightForms уже 2 года на постоянной основе.',
+                text: 'Качественные изделия, отличный сервис. Работаем уже 2 года на постоянной основе.',
                 rating: 5
               },
               {
