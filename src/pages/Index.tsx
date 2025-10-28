@@ -306,8 +306,8 @@ export default function Index() {
                   <p className="text-sm text-muted-foreground">Гарантия</p>
                 </Card>
                 <Card className="p-6 text-center border-border/50">
-                  <div className="text-4xl font-bold text-primary mb-2">24/7</div>
-                  <p className="text-sm text-muted-foreground">Поддержка</p>
+                  <div className="text-4xl font-bold text-primary mb-2">Монтаж</div>
+                  <p className="text-sm text-muted-foreground">Под ключ</p>
                 </Card>
               </div>
             </div>
