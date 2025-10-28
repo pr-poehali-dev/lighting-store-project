@@ -60,7 +60,7 @@ export default function Index() {
                 <Icon name="Lightbulb" size={24} className="text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">LightForms</h1>
+                <h1 className="text-xl font-bold">МагазинСветильников</h1>
                 <p className="text-xs text-muted-foreground">Световые решения</p>
               </div>
             </div>
@@ -496,7 +496,7 @@ export default function Index() {
                   <Icon name="Lightbulb" size={24} className="text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold">LightForms</h3>
+                  <h3 className="font-bold">МагазинСветильников</h3>
                   <p className="text-xs text-muted-foreground">Световые решения</p>
                 </div>
               </div>
@@ -533,13 +533,13 @@ export default function Index() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Icon name="Mail" size={16} />
-                  info@lightforms.ru
+                  info@magazinsvetilnikov.ru
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>© 2024 LightForms. Все права защищены.</p>
+            <p>© 2024 МагазинСветильников. Все права защищены.</p>
           </div>
         </div>
       </footer>
