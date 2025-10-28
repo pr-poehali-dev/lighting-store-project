@@ -347,7 +347,72 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="testimonials" className="py-16 lg:py-24 bg-muted/20">
+      <section id="team" className="py-16 lg:py-24 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4">Наша команда</h2>
+            <p className="text-muted-foreground text-lg">Профессионалы, которые создают световые решения</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                name: 'Михаил Соколов',
+                role: 'Главный дизайнер',
+                desc: 'Специалист по световому дизайну с 10-летним опытом',
+                image: 'https://cdn.poehali.dev/projects/51c62b2d-3c50-4ed9-b310-c823cce0e70c/files/cb03bb29-0b54-4b82-bf74-66dfd9033477.jpg',
+                contact: 'telegram'
+              },
+              {
+                name: 'Анна Петрова',
+                role: 'Менеджер по продажам',
+                desc: 'Поможет подобрать идеальное решение для вашего проекта',
+                image: 'https://cdn.poehali.dev/projects/51c62b2d-3c50-4ed9-b310-c823cce0e70c/files/1823df62-fcb8-4368-b246-22636769a088.jpg',
+                contact: 'phone'
+              },
+              {
+                name: 'Дмитрий Иванов',
+                role: 'Технический специалист',
+                desc: 'Консультирует по установке и техническим характеристикам',
+                image: 'https://cdn.poehali.dev/projects/51c62b2d-3c50-4ed9-b310-c823cce0e70c/files/1175dc7b-faf0-49da-a3e3-355e072a19f4.jpg',
+                contact: 'mail'
+              }
+            ].map((member, index) => (
+              <Card 
+                key={member.name}
+                className="overflow-hidden border-border/50 hover:border-primary/50 transition-all group animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="relative overflow-hidden h-80">
+                  <img 
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold mb-1">{member.name}</h3>
+                    <p className="text-primary font-medium mb-2">{member.role}</p>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <p className="text-muted-foreground mb-4">{member.desc}</p>
+                  <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Icon 
+                      name={member.contact === 'telegram' ? 'MessageCircle' : member.contact === 'phone' ? 'Phone' : 'Mail'} 
+                      size={16} 
+                      className="mr-2" 
+                    />
+                    Связаться
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" className="py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-5xl font-bold mb-4">Отзывы клиентов</h2>
