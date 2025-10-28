@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
+import { useToast } from '@/hooks/use-toast';
 
 interface Product {
   id: number;
@@ -25,6 +30,10 @@ const products: Product[] = [
 export default function Index() {
   const [activeCategory, setActiveCategory] = useState<'all' | 'interior' | 'landscape'>('all');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
+  const { toast } = useToast();
 
   const filteredProducts = activeCategory === 'all' 
     ? products 
@@ -303,6 +312,152 @@ export default function Index() {
                 </div>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="order" className="py-16 lg:py-24 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-5xl font-bold mb-4">Быстрый заказ</h2>
+              <p className="text-muted-foreground text-lg">Рассчитайте стоимость и оставьте заявку</p>
+            </div>
+
+            <Card className="border-border/50">
+              <CardContent className="p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-6">Калькулятор стоимости</h3>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="product">Выберите товар</Label>
+                        <Select value={selectedProduct} onValueChange={setSelectedProduct}>
+                          <SelectTrigger id="product">
+                            <SelectValue placeholder="Выберите из каталога" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {products.map(product => (
+                              <SelectItem key={product.id} value={product.id.toString()}>
+                                {product.name} - {product.price.toLocaleString('ru-RU')} ₽
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="quantity">Количество</Label>
+                        <Input 
+                          id="quantity" 
+                          type="number" 
+                          min="1" 
+                          value={quantity}
+                          onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                        />
+                      </div>
+
+                      <div className="mt-6 p-6 bg-primary/10 rounded-lg border border-primary/30">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-muted-foreground">Стоимость товара:</span>
+                          <span className="font-semibold">
+                            {selectedProduct 
+                              ? (products.find(p => p.id.toString() === selectedProduct)?.price || 0).toLocaleString('ru-RU')
+                              : '0'} ₽
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-muted-foreground">Количество:</span>
+                          <span className="font-semibold">{quantity} шт.</span>
+                        </div>
+                        <div className="border-t border-primary/30 pt-3 mt-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-lg font-bold">Итого:</span>
+                            <span className="text-2xl font-bold text-primary">
+                              {selectedProduct
+                                ? ((products.find(p => p.id.toString() === selectedProduct)?.price || 0) * quantity).toLocaleString('ru-RU')
+                                : '0'} ₽
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold mb-6">Контактные данные</h3>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="name">Имя *</Label>
+                        <Input 
+                          id="name" 
+                          placeholder="Ваше имя"
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="phone">Телефон *</Label>
+                        <Input 
+                          id="phone" 
+                          type="tel" 
+                          placeholder="+7 (___) ___-__-__"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="email">Email</Label>
+                        <Input 
+                          id="email" 
+                          type="email" 
+                          placeholder="your@email.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="message">Комментарий</Label>
+                        <Textarea 
+                          id="message" 
+                          placeholder="Дополнительная информация о заказе"
+                          value={formData.message}
+                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          rows={3}
+                        />
+                      </div>
+
+                      <Button 
+                        className="w-full glow-blue" 
+                        size="lg"
+                        onClick={() => {
+                          if (!formData.name || !formData.phone) {
+                            toast({ title: 'Заполните обязательные поля', description: 'Имя и телефон обязательны для заказа', variant: 'destructive' });
+                            return;
+                          }
+                          if (!selectedProduct) {
+                            toast({ title: 'Выберите товар', description: 'Необходимо выбрать товар из каталога', variant: 'destructive' });
+                            return;
+                          }
+                          toast({ title: 'Заявка отправлена!', description: 'Мы свяжемся с вами в ближайшее время' });
+                          setFormData({ name: '', phone: '', email: '', message: '' });
+                          setSelectedProduct('');
+                          setQuantity(1);
+                        }}
+                      >
+                        <Icon name="Send" size={20} className="mr-2" />
+                        Отправить заявку
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
