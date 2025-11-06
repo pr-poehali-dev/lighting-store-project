@@ -13,6 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { API_ENDPOINTS, apiRequest } from "@/config/api";
 
 interface SiteSettings {
   siteName: string;
@@ -137,30 +138,52 @@ export default function Admin() {
   const { toast } = useToast();
 
   useEffect(() => {
-    const saved = localStorage.getItem("siteSettings");
-    if (saved) {
-      setSettings(JSON.parse(saved));
-    }
-    
-    const botUrl = "https://functions.poehali.dev/fbf214ed-4f95-448b-9b46-3ed38518d45a";
-    setTelegramBotUrl(botUrl);
+    loadSettings();
+    setTelegramBotUrl(API_ENDPOINTS.telegramBot);
   }, []);
 
-  const handleSave = () => {
-    localStorage.setItem("siteSettings", JSON.stringify(settings));
-    
-    const root = document.documentElement;
-    root.style.setProperty("--primary", settings.primaryColor);
-    root.style.setProperty("--secondary", settings.secondaryColor);
-    root.style.setProperty("--accent", settings.accentColor);
-    root.style.setProperty("--background", settings.backgroundColor);
-    root.style.setProperty("--foreground", settings.textColor);
-    root.style.setProperty("--radius", `${settings.borderRadius}px`);
-    
-    toast({
-      title: "✅ Сохранено",
-      description: "Настройки успешно применены к сайту",
-    });
+  const loadSettings = async () => {
+    try {
+      const data = await apiRequest(API_ENDPOINTS.adminSettings);
+      if (data.settings) {
+        setSettings({ ...defaultSettings, ...data.settings });
+      }
+    } catch (error) {
+      const saved = localStorage.getItem("siteSettings");
+      if (saved) {
+        setSettings(JSON.parse(saved));
+      }
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      await apiRequest(API_ENDPOINTS.adminSettings, {
+        method: 'POST',
+        body: JSON.stringify(settings)
+      });
+      
+      localStorage.setItem("siteSettings", JSON.stringify(settings));
+      
+      const root = document.documentElement;
+      root.style.setProperty("--primary", settings.primaryColor);
+      root.style.setProperty("--secondary", settings.secondaryColor);
+      root.style.setProperty("--accent", settings.accentColor);
+      root.style.setProperty("--background", settings.backgroundColor);
+      root.style.setProperty("--foreground", settings.textColor);
+      root.style.setProperty("--radius", `${settings.borderRadius}px`);
+      
+      toast({
+        title: "✅ Сохранено",
+        description: "Настройки сохранены в базе данных",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "❌ Ошибка",
+        description: error instanceof Error ? error.message : "Не удалось сохранить настройки",
+      });
+    }
   };
 
   const handleReset = () => {
