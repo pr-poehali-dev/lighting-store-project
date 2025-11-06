@@ -61,7 +61,7 @@ export default function Index() {
               </div>
               <div>
                 <h1 className="font-bold text-xs">Магазин Светильников . РФ</h1>
-                <p className="text-xs text-muted-foreground">ВАША АРХИТЕКТУРА СВЕТА</p>
+                <p className="text-muted-foreground text-xs">ВАША АРХИТЕКТУРА СВЕТА</p>
               </div>
             </div>
 
