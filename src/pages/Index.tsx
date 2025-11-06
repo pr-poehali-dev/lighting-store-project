@@ -118,10 +118,7 @@ export default function Index() {
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
             <Badge className="mb-6 bg-primary/20 text-primary border-primary/50">📍сухой порт г. Екатеринбург • Доставка по РФ</Badge>
             <h1 className="lg:text-7xl mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mx-0 font-extralight text-left text-3xl">СВЕТИЛЬНИКИ: ОТ СТАНДАРТНЫХ МОДЕЛЕЙ ДО ЭКСКЛЮЗИВНЫХ СВЕТОВЫХ ФОРМ.</h1>
-            <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Профессиональные светодиодные решения: кубы, шары, кашпо и уличные светильники. 
-              Создаём атмосферу света в вашем пространстве.
-            </p>
+            <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">Ищете эксклюзивный свет? ✨ В «МагазинСветильников.РФ» вы найдете дизайнерские светильники для интерьера, экстерьера и ландшафта (МАФ). Заказ от мировых брендов и собственное производство. Создайте уникальное освещение!</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="glow-blue group">
                 <Icon name="Sparkles" size={20} className="mr-2" />
