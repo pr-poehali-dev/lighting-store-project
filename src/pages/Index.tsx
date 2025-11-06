@@ -186,7 +186,7 @@ export default function Index() {
             <h1 className="lg:text-7xl mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mx-0 font-extralight text-left text-3xl">
               СВЕТИЛЬНИКИ: ОТ СТАНДАРТНЫХ МОДЕЛЕЙ ДО ЭКСКЛЮЗИВНЫХ СВЕТОВЫХ ФОРМ.
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-center">Добро пожаловать в "Магазин Светильников . РФ". 
+            <p className="lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-left text-base">Добро пожаловать в "Магазин Светильников . РФ". 
 ⚡️Здесь вы найдете светильники для интерьерных, экстерьерных и ландшафтных проектов. 
 ⚡️Мы поставляем продукцию ведущих мировых брендов со склада и под заказ, а также предлагаем модели собственного производства. 
 ⚡️Поможем создать световое решение, которое подчеркнет вашу индивидуальность.</p>
