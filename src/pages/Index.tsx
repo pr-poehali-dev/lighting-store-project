@@ -119,7 +119,7 @@ export default function Index() {
             <Badge className="mb-6 bg-primary/20 text-primary border-primary/50">
               Екатеринбург • Доставка по России
             </Badge>
-            <h1 className="lg:text-7xl mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent text-left mx-0 text-4xl font-extralight">СВЕТИЛЬНИКИ: ОТ СТАНДАРТНЫХ МОДЕЛЕЙ ДО ЭКСКЛЮЗИВНЫХ СВЕТОВЫХ ФОРМ.</h1>
+            <h1 className="lg:text-7xl mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mx-0 font-extralight text-left text-2xl">СВЕТИЛЬНИКИ: ОТ СТАНДАРТНЫХ МОДЕЛЕЙ ДО ЭКСКЛЮЗИВНЫХ СВЕТОВЫХ ФОРМ.</h1>
             <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Профессиональные светодиодные решения: кубы, шары, кашпо и уличные светильники. 
               Создаём атмосферу света в вашем пространстве.
