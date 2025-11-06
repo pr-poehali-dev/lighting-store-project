@@ -60,7 +60,7 @@ export default function Index() {
                 <Icon name="Lightbulb" size={24} className="text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Магазин Светильников . РФ</h1>
+                <h1 className="font-bold text-xs">Магазин Светильников . РФ</h1>
                 <p className="text-xs text-muted-foreground">ВАША АРХИТЕКТУРА СВЕТА</p>
               </div>
             </div>
