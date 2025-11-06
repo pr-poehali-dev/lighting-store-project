@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { API_ENDPOINTS, apiRequest } from "@/config/api";
+import ProductsManager from "@/components/admin/ProductsManager";
 
 interface SiteSettings {
   siteName: string;
@@ -283,8 +284,12 @@ export default function Admin() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="telegram" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-7 gap-2">
+        <Tabs defaultValue="products" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-8 gap-2">
+            <TabsTrigger value="products" className="flex items-center gap-2">
+              <Icon name="Package" size={16} />
+              <span className="hidden sm:inline">Товары</span>
+            </TabsTrigger>
             <TabsTrigger value="telegram" className="flex items-center gap-2">
               <Icon name="Send" size={16} />
               <span className="hidden sm:inline">Telegram</span>
@@ -314,6 +319,10 @@ export default function Admin() {
               <span className="hidden sm:inline">Контакты</span>
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="products" className="space-y-6">
+            <ProductsManager />
+          </TabsContent>
 
           <TabsContent value="telegram" className="space-y-6">
             <Alert>
