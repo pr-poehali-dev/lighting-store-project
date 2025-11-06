@@ -17,6 +17,14 @@ def get_db_connection():
     database_url = os.environ.get('DATABASE_URL')
     return psycopg2.connect(database_url)
 
+def verify_admin_token(headers: Dict[str, str]) -> bool:
+    admin_token = os.environ.get('ADMIN_TOKEN')
+    if not admin_token:
+        return False
+    
+    provided_token = headers.get('X-Admin-Token') or headers.get('x-admin-token')
+    return provided_token == admin_token
+
 def is_authorized_user(telegram_user_id: int, phone: Optional[str] = None) -> bool:
     if phone and phone.replace('-', '').replace(' ', '') == ALLOWED_PHONE.replace('-', '').replace(' ', ''):
         return True
@@ -120,6 +128,7 @@ def send_telegram_message(chat_id: int, text: str, bot_token: str):
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method: str = event.get('httpMethod', 'POST')
+    headers = event.get('headers', {})
     
     if method == 'OPTIONS':
         return {
@@ -127,13 +136,23 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'headers': {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Admin-Token',
                 'Access-Control-Max-Age': '86400'
             },
             'body': ''
         }
     
     if method == 'GET':
+        if not verify_admin_token(headers):
+            return {
+                'statusCode': 401,
+                'headers': {'Content-Type': 'application/json'},
+                'body': json.dumps({
+                    'error': 'Unauthorized',
+                    'message': 'Admin token required for GET requests'
+                })
+            }
+        
         return {
             'statusCode': 200,
             'headers': {'Content-Type': 'application/json'},

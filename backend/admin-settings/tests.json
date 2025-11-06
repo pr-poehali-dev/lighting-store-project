@@ -1,17 +1,12 @@
 {
   "tests": [
     {
-      "name": "Telegram webhook POST",
-      "method": "POST",
+      "name": "Unauthorized access without token",
+      "method": "GET",
       "path": "/",
-      "body": {
-        "message": {
-          "text": "test"
-        }
-      },
-      "expectedStatus": 200,
+      "expectedStatus": 401,
       "expectedBody": {
-        "ok": "boolean"
+        "error": "string"
       },
       "bodyMatcher": "partial"
     },
