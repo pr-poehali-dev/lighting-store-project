@@ -11,6 +11,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Slider } from "@/components/ui/slider";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface SiteSettings {
   siteName: string;
@@ -130,6 +132,8 @@ export default function Admin() {
   const [settings, setSettings] = useState<SiteSettings>(defaultSettings);
   const [isLocked, setIsLocked] = useState(true);
   const [password, setPassword] = useState("");
+  const [telegramBotUrl, setTelegramBotUrl] = useState("");
+  const [isBotSetupOpen, setIsBotSetupOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -137,6 +141,9 @@ export default function Admin() {
     if (saved) {
       setSettings(JSON.parse(saved));
     }
+    
+    const botUrl = "https://functions.poehali.dev/fbf214ed-4f95-448b-9b46-3ed38518d45a";
+    setTelegramBotUrl(botUrl);
   }, []);
 
   const handleSave = () => {
@@ -253,8 +260,12 @@ export default function Admin() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="content" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 gap-2">
+        <Tabs defaultValue="telegram" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-7 gap-2">
+            <TabsTrigger value="telegram" className="flex items-center gap-2">
+              <Icon name="Send" size={16} />
+              <span className="hidden sm:inline">Telegram</span>
+            </TabsTrigger>
             <TabsTrigger value="content" className="flex items-center gap-2">
               <Icon name="FileText" size={16} />
               <span className="hidden sm:inline">Контент</span>
@@ -280,6 +291,149 @@ export default function Admin() {
               <span className="hidden sm:inline">Контакты</span>
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="telegram" className="space-y-6">
+            <Alert>
+              <Icon name="Sparkles" size={20} className="h-4 w-4" />
+              <AlertTitle>Telegram-бот активирован!</AlertTitle>
+              <AlertDescription>
+                Публикуйте товары прямо из Telegram — отправьте фото с описанием, и товар появится на сайте автоматически.
+              </AlertDescription>
+            </Alert>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Icon name="Send" size={24} className="text-primary" />
+                  Telegram-бот для публикаций
+                </CardTitle>
+                <CardDescription>Автоматическая публикация товаров через мессенджер</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3 p-4 bg-muted rounded-lg">
+                    <Icon name="Phone" size={20} className="text-primary mt-1" />
+                    <div>
+                      <p className="font-medium">Авторизованный номер</p>
+                      <p className="text-lg font-bold text-primary">+7-922-214-29-96</p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Только этот номер может публиковать контент
+                      </p>
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  <div>
+                    <h3 className="font-semibold mb-3 flex items-center gap-2">
+                      <Icon name="Settings" size={18} />
+                      Инструкция по настройке
+                    </h3>
+                    <ol className="space-y-3 text-sm">
+                      <li className="flex gap-3">
+                        <Badge variant="outline" className="h-6 w-6 flex items-center justify-center p-0">1</Badge>
+                        <div>
+                          <p className="font-medium">Создайте бота в Telegram</p>
+                          <p className="text-muted-foreground">
+                            Откройте <a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">@BotFather</a> в Telegram
+                          </p>
+                          <p className="text-muted-foreground">Отправьте команду: <code className="bg-muted px-2 py-0.5 rounded">/newbot</code></p>
+                          <p className="text-muted-foreground">Следуйте инструкциям и получите токен</p>
+                        </div>
+                      </li>
+                      <li className="flex gap-3">
+                        <Badge variant="outline" className="h-6 w-6 flex items-center justify-center p-0">2</Badge>
+                        <div>
+                          <p className="font-medium">Добавьте токен в секреты</p>
+                          <p className="text-muted-foreground">
+                            Вставьте полученный токен в поле <strong>TELEGRAM_BOT_TOKEN</strong> выше
+                          </p>
+                        </div>
+                      </li>
+                      <li className="flex gap-3">
+                        <Badge variant="outline" className="h-6 w-6 flex items-center justify-center p-0">3</Badge>
+                        <div>
+                          <p className="font-medium">Настройте Webhook</p>
+                          <p className="text-muted-foreground">Скопируйте и откройте эту ссылку в браузере (замените YOUR_TOKEN):</p>
+                          <code className="block bg-muted p-2 rounded mt-2 text-xs break-all">
+                            https://api.telegram.org/botYOUR_TOKEN/setWebhook?url={telegramBotUrl}
+                          </code>
+                        </div>
+                      </li>
+                      <li className="flex gap-3">
+                        <Badge variant="outline" className="h-6 w-6 flex items-center justify-center p-0">4</Badge>
+                        <div>
+                          <p className="font-medium">Авторизуйтесь</p>
+                          <p className="text-muted-foreground">
+                            Откройте бота в Telegram и отправьте свой контакт (номер +7-922-214-29-96)
+                          </p>
+                        </div>
+                      </li>
+                    </ol>
+                  </div>
+
+                  <Separator />
+
+                  <div>
+                    <h3 className="font-semibold mb-3 flex items-center gap-2">
+                      <Icon name="Lightbulb" size={18} />
+                      Как публиковать товары
+                    </h3>
+                    <div className="space-y-3">
+                      <div className="p-4 bg-muted rounded-lg space-y-2">
+                        <p className="font-medium">📸 Отправьте фото товара</p>
+                        <p className="text-sm text-muted-foreground">В описании к фото укажите:</p>
+                        <div className="bg-background p-3 rounded text-sm font-mono">
+                          <div>Светящийся куб 40x40</div>
+                          <div className="text-muted-foreground">Цена: 12500</div>
+                          <div className="text-muted-foreground">Категория: интерьер</div>
+                          <div className="text-muted-foreground">Стильный куб с RGB подсветкой</div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <Icon name="Info" size={16} className="mt-0.5" />
+                        <p>
+                          Первая строка — название товара. Остальное — цена, категория (интерьер/ландшафт) и описание.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-4 border rounded-lg space-y-2">
+                      <div className="flex items-center gap-2 text-green-500">
+                        <Icon name="CheckCircle2" size={20} />
+                        <span className="font-semibold">Что умеет бот</span>
+                      </div>
+                      <ul className="text-sm space-y-1 text-muted-foreground">
+                        <li>✅ Автоматическое добавление товаров</li>
+                        <li>✅ Обработка фото и видео</li>
+                        <li>✅ Парсинг названия и цены</li>
+                        <li>✅ Определение категории</li>
+                        <li>✅ Сохранение в базу данных</li>
+                      </ul>
+                    </div>
+
+                    <div className="p-4 border rounded-lg space-y-2">
+                      <div className="flex items-center gap-2 text-blue-500">
+                        <Icon name="Shield" size={20} />
+                        <span className="font-semibold">Безопасность</span>
+                      </div>
+                      <ul className="text-sm space-y-1 text-muted-foreground">
+                        <li>🔒 Авторизация по номеру телефона</li>
+                        <li>🔒 Только разрешенные пользователи</li>
+                        <li>🔒 Проверка при каждом сообщении</li>
+                        <li>🔒 Защищенное подключение к БД</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
           <TabsContent value="content" className="space-y-6">
             <Card>
