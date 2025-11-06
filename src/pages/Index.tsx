@@ -181,7 +181,7 @@ export default function Index() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
             <Badge className="mb-6 bg-primary/20 text-primary border-primary/50">📍сухой порт г. Екатеринбург • доставка по РФ</Badge>
-            <h1 className="lg:text-7xl bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-extralight text-left text-3xl mx-0 my-[22px]">
+            <h1 className="lg:text-7xl bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-extralight text-left text-3xl mx-0 my-[22px] px-0 py-3.5">
               СВЕТИЛЬНИКИ: ОТ СТАНДАРТНЫХ МОДЕЛЕЙ ДО ЭКСКЛЮЗИВНЫХ СВЕТОВЫХ ФОРМ.
             </h1>
             <p className="lg:text-xl text-muted-foreground mb-8 max-w-2xl text-left text-base mx-0">
