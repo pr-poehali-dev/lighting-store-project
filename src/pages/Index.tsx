@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
+import Header from "@/components/layout/Header";
 
 interface Product {
   id: number;
@@ -114,64 +115,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary glow-blue flex items-center justify-center">
-                <Icon name="Lightbulb" size={24} className="text-white" />
-              </div>
-              <div>
-                <h1 className="font-bold text-xs">Магазин Светильников . РФ</h1>
-                <p className="text-muted-foreground text-xs text-center">
-                  ВАША АРХИТЕКТУРА СВЕТА
-                </p>
-              </div>
-            </div>
-
-            <nav className="hidden lg:flex items-center gap-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon">
-                <Icon name="ShoppingCart" size={20} />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                <Icon name={mobileMenuOpen ? "X" : "Menu"} size={20} />
-              </Button>
-            </div>
-          </div>
-
-          {mobileMenuOpen && (
-            <nav className="lg:hidden mt-4 pb-4 flex flex-col gap-2 animate-fade-in">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="px-4 py-2 text-sm font-medium hover:bg-muted rounded-lg transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-          )}
-        </div>
-      </header>
+      <Header />
 
       <section id="home" className="relative overflow-hidden py-20 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-secondary/10 to-background" />
