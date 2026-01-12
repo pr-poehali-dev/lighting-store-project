@@ -6,39 +6,38 @@
 
 @layer base {
   :root {
-    --background: 222 47% 5%;
-    --foreground: 210 40% 98%;
+    --background: 210 17% 98%;
+    --foreground: 210 11% 15%;
 
-    --card: 222 40% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
 
-    --popover: 222 40% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 100% 33%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 262 83% 58%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 162 77% 22%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 17% 98%;
+    --muted-foreground: 210 9% 54%;
 
-    --accent: 38 92% 50%;
-    --accent-foreground: 222 47% 5%;
+    --accent: 217 100% 33%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
+    --border: 210 14% 83%;
+    --input: 210 14% 83%;
+    --ring: 217 100% 33%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --glow-blue: 217 91% 60%;
-    --glow-purple: 262 83% 58%;
-    --glow-orange: 38 92% 50%;
+    --glow-blue: 217 100% 33%;
+    --glow-green: 162 77% 22%;
   }
 }
 
@@ -69,23 +68,17 @@
 @layer utilities {
   .glow-blue {
     box-shadow:
-      0 0 20px hsl(var(--glow-blue) / 0.5),
-      0 0 40px hsl(var(--glow-blue) / 0.3);
+      0 0 20px hsl(var(--glow-blue) / 0.3),
+      0 0 40px hsl(var(--glow-blue) / 0.15);
   }
 
-  .glow-purple {
+  .glow-green {
     box-shadow:
-      0 0 20px hsl(var(--glow-purple) / 0.5),
-      0 0 40px hsl(var(--glow-purple) / 0.3);
-  }
-
-  .glow-orange {
-    box-shadow:
-      0 0 20px hsl(var(--glow-orange) / 0.5),
-      0 0 40px hsl(var(--glow-orange) / 0.3);
+      0 0 20px hsl(var(--glow-green) / 0.3),
+      0 0 40px hsl(var(--glow-green) / 0.15);
   }
 
   .text-glow {
-    text-shadow: 0 0 20px currentColor;
+    text-shadow: 0 0 10px currentColor;
   }
 }
