@@ -15,6 +15,7 @@ import {
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/layout/Header";
+import HeroSlider from "@/components/sections/HeroSlider";
 
 interface Product {
   id: number;
@@ -116,6 +117,7 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
+      <HeroSlider />
 
       <section id="home" className="relative overflow-hidden py-20 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-secondary/10 to-background" />
