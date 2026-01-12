@@ -59,6 +59,17 @@ const MegaMenu = ({ menuKey }: MegaMenuProps) => {
       ],
     },
     {
+      title: 'Световая реклама',
+      icon: 'Store',
+      items: [
+        'Световые буквы',
+        'Фасадные вывески',
+        'Неоновая реклама',
+        'Объемные буквы',
+        'LED-экраны',
+      ],
+    },
+    {
       title: 'Комплектующие',
       icon: 'Plug',
       items: [
@@ -70,28 +81,7 @@ const MegaMenu = ({ menuKey }: MegaMenuProps) => {
     },
   ];
 
-  const advertisingMenu = [
-    {
-      title: 'Световые вывески',
-      icon: 'Store',
-      items: [
-        'Световые буквы',
-        'Фасадные вывески',
-        'Интерьерные вывески',
-        'Световые короба',
-      ],
-    },
-    {
-      title: 'Специальные решения',
-      icon: 'Zap',
-      items: [
-        'Неоновая реклама',
-        'Информационные таблички',
-        'Объемные буквы',
-        'LED-экраны',
-      ],
-    },
-  ];
+
 
   const servicesMenu = [
     {
@@ -166,8 +156,6 @@ const MegaMenu = ({ menuKey }: MegaMenuProps) => {
     switch (menuKey) {
       case 'catalog':
         return catalogMenu;
-      case 'advertising':
-        return advertisingMenu;
       case 'services':
         return servicesMenu;
       case 'professionals':

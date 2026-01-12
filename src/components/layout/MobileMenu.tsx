@@ -35,23 +35,12 @@ const MobileMenu = () => {
           items: ['Светодиодная мебель', 'Световые МАФы'],
         },
         {
+          title: 'Световая реклама',
+          items: ['Световые буквы', 'Фасадные вывески', 'Неон', 'Объемные буквы'],
+        },
+        {
           title: 'Комплектующие',
           items: ['Лампы', 'LED-ленты', 'Блоки питания', 'Диммеры'],
-        },
-      ],
-    },
-    {
-      title: 'Световая реклама',
-      key: 'advertising',
-      icon: 'Megaphone',
-      subsections: [
-        {
-          title: 'Вывески',
-          items: ['Световые буквы', 'Фасадные', 'Интерьерные', 'Короба'],
-        },
-        {
-          title: 'Специальные решения',
-          items: ['Неон', 'Таблички', 'Объемные буквы'],
         },
       ],
     },
@@ -88,7 +77,6 @@ const MobileMenu = () => {
   ];
 
   const simpleLinks = [
-    { title: 'Производство', icon: 'Factory', link: '/production' },
     { title: 'Проекты', icon: 'Images', link: '/projects' },
     { title: 'О компании', icon: 'Info', link: '/about' },
     { title: 'Доставка и оплата', icon: 'Truck', link: '/delivery' },

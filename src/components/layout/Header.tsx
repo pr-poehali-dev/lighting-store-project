@@ -20,9 +20,7 @@ const Header = () => {
 
   const menuItems = [
     { label: 'Каталог', key: 'catalog', hasMega: true },
-    { label: 'Световая реклама', key: 'advertising', hasMega: true },
     { label: 'Услуги', key: 'services', hasMega: true },
-    { label: 'Производство', key: 'production', hasMega: false },
     { label: 'Для профессионалов', key: 'professionals', hasMega: true },
     { label: 'Проекты', key: 'projects', hasMega: false },
     { label: 'О компании', key: 'about', hasMega: true },
