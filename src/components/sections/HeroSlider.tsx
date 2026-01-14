@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
+import { API_ENDPOINTS } from '@/config/api';
 
 interface Slide {
   id: number;
@@ -13,7 +14,7 @@ interface Slide {
   imageMobile?: string;
 }
 
-const slides: Slide[] = [
+const defaultSlides: Slide[] = [
   {
     id: 1,
     title: 'Свет, который создает уют',
@@ -49,9 +50,35 @@ const slides: Slide[] = [
 ];
 
 const HeroSlider = () => {
+  const [slides, setSlides] = useState<Slide[]>(defaultSlides);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    const loadImages = async () => {
+      try {
+        const response = await fetch(`${API_ENDPOINTS.mediaList}?folder=home`);
+        const data = await response.json();
+        
+        if (data.images && data.images.length > 0) {
+          const imageSlides = data.images.map((img: any, index: number) => ({
+            id: index + 1,
+            title: defaultSlides[index]?.title || 'Светильники',
+            description: defaultSlides[index]?.description || 'Магазин светильников',
+            ctaText: defaultSlides[index]?.ctaText || 'Смотреть каталог',
+            ctaLink: defaultSlides[index]?.ctaLink || '/catalog',
+            image: img.url,
+          }));
+          setSlides(imageSlides);
+        }
+      } catch (error) {
+        console.error('Ошибка загрузки изображений слайдера:', error);
+      }
+    };
+
+    loadImages();
+  }, []);
 
   useEffect(() => {
     if (isPaused || isTransitioning) return;

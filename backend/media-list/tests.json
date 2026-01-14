@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Get home folder images",
+      "method": "GET",
+      "path": "/?folder=home",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "folder": "string",
+        "images": "array",
+        "count": "number"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Handle OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
