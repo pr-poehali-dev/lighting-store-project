@@ -41,8 +41,8 @@ const Header = () => {
               <Icon name="Lightbulb" className="text-primary-foreground" size={24} />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-foreground">LightPro</span>
-              <span className="text-xs text-muted-foreground">Световые решения</span>
+              <span className="text-xl font-bold text-foreground">МагазинСветильников.РФ</span>
+              <span className="text-xs text-muted-foreground">ВАША АРХИТЕКТУРА СВЕТА</span>
             </div>
           </Link>
 
