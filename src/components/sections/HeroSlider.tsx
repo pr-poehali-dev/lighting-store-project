@@ -142,7 +142,7 @@ const HeroSlider = () => {
 
             <div className="absolute inset-0 container mx-auto px-4 flex items-center">
               <div className="max-w-2xl space-y-6 animate-fade-in">
-                <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+                <h1 className="lg:text-6xl font-bold text-foreground leading-tight text-3xl">
                   {slide.title}
                 </h1>
                 <p className="text-lg lg:text-xl text-muted-foreground max-w-xl">
